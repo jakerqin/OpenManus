@@ -132,13 +132,13 @@ class BaseAgent(BaseModel, ABC):
             self.update_memory("user", request)
 
         results: List[str] = []
-        async with self.state_context(AgentState.RUNNING):
+        async with self.state_context(AgentState.RUNNING):       # 上下文管理状态
             while (
                 self.current_step < self.max_steps and self.state != AgentState.FINISHED
             ):
                 self.current_step += 1
                 logger.info(f"Executing step {self.current_step}/{self.max_steps}")
-                step_result = await self.step()
+                step_result = await self.step()                  # 执行步骤
 
                 # Check for stuck state
                 if self.is_stuck():

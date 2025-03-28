@@ -31,6 +31,8 @@ class Manus(BrowserAgent):
     max_steps: int = 20
 
     # Add general-purpose tools to the tool collection
+    # 这里使用Field来定义 available_tools 属性，并通过default_factory参数提供默认值的生成方式。
+    # 这种方式确保每个 Manus 实例都有自己独立的 ToolCollection 实例，而不是共享同一个实例。
     available_tools: ToolCollection = Field(
         default_factory=lambda: ToolCollection(
             PythonExecute(), BrowserUseTool(), StrReplaceEditor(), Terminate()

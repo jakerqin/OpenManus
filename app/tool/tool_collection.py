@@ -9,6 +9,7 @@ class ToolCollection:
     """A collection of defined tools."""
 
     class Config:
+        """运行任意类型"""
         arbitrary_types_allowed = True
 
     def __init__(self, *tools: BaseTool):
